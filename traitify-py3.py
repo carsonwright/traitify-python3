@@ -9,7 +9,7 @@ class Assessment:
 
 class Traitify:
 	def __init__(self, configurations = {"host":"", "secret_key":"", "public_key":"", "deck_id":""}):
-		self.url = configurations["host"]
+		self.host = configurations["host"]
 		self.secret_key = configurations["secret_key"]
 		self.public_key = configurations["public_key"]
 		self.deck_id = configurations["deck_id"]
