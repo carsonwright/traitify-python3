@@ -8,15 +8,15 @@ class Assessment:
 		self.created_at = attributes["created_at"]
 
 class Traitify:
-	def __init__(self, configurations = {"url":"", "secret_key":"", "public_key":"", "deck_id":""}):
-		self.url = configurations["url"]
+	def __init__(self, configurations = {"host":"", "secret_key":"", "public_key":"", "deck_id":""}):
+		self.url = configurations["host"]
 		self.secret_key = configurations["secret_key"]
 		self.public_key = configurations["public_key"]
 		self.deck_id = configurations["deck_id"]
 
 	def create_assessment(self):
 		headers = {"Accept":"application/json", "Content-Type":"application/json", "Authorization": "Basic "+self.private_key+":x"}
-		conn = http.client.HTTPConnection(self.url)
+		conn = http.client.HTTPConnection(self.host)
 		conn.request("POST", "/"+self.version+"/assessments", '{"deck_id":"'+self.deck_id+'"}', headers)
 		response = conn.getresponse()
 		data = response.read().decode()
