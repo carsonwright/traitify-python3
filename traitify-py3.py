@@ -1,4 +1,4 @@
-import httplib, urllib, base64, json
+import http.client, urllib, base64, json
 class Assessment:
 	def __init__(self, attributes):
 		self.id = attributes["id"]
@@ -16,10 +16,10 @@ class Traitify:
 
 	def create_assessment(self):
 		headers = {"Accept":"application/json", "Content-Type":"application/json", "Authorization": "Basic "+self.private_key+":x"}
-		conn = httplib.HTTPConnection(self.url)
+		conn = http.client.HTTPConnection(self.url)
 		conn.request("POST", "/"+self.version+"/assessments", '{"deck_id":"'+self.deck_id+'"}', headers)
 		response = conn.getresponse()
-		data = response.read()
+		data = response.read().decode()
 		conn.close()
-		json_data = json.loads(data)
+		json_data = json.loads(str(data))
 		return Assessment(json_data)

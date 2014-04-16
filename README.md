@@ -1,7 +1,5 @@
-traitify-python2.x
-==================
-
-
+traitify-python3
+================
 
 ```
 traitify = Traitify()
